@@ -424,11 +424,6 @@ $this->withoutMiddleware(\Illuminate\Routing\Middleware\ThrottleRequests::class)
 
 - **Documentação ElevenLabs:** [https://api.elevenlabs.io/docs](https://api.elevenlabs.io/docs)
 
----
-
-## 📄 Licença
-
-MIT License - veja [LICENSE](LICENSE) para detalhes.
 
 ---
 
@@ -439,6 +434,4 @@ MIT License - veja [LICENSE](LICENSE) para detalhes.
 - Comunidade Open Source
 
 ---
-
-**Desenvolvido com ❤️ usando Laravel + ElevenLabs**
 
