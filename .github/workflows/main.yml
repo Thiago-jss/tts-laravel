@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['8.1', '8.2', '8.3']
+        php-version: ['8.2', '8.3']
 
     steps:
       - name: Checkout code
@@ -36,11 +36,11 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
+          key: ${{ runner.os }}-php-${{ matrix.php-version }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-php-${{ matrix.php-version }}-composer-
 
       - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-progress --no-interaction --no-dev
+        run: composer install --prefer-dist --no-progress --no-interaction
 
       - name: Copy .env.example to .env
         run: cp .env.example .env
@@ -65,7 +65,7 @@ jobs:
         env:
           ELEVEN_API_KEY: ${{ secrets.ELEVEN_API_KEY || 'dummy-key-for-testing' }}
           ELEVEN_VOICE_ID: ${{ secrets.ELEVEN_VOICE_ID || 'ErXwobaYiN019PkySvjV' }}
-        run: php artisan test
+        run: vendor/bin/phpunit
 
   code-quality:
     name: Code Quality Check
@@ -83,7 +83,7 @@ jobs:
           tools: composer:v2
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-dev
+        run: composer install --prefer-dist --no-progress
 
       - name: Run Laravel Pint (code style)
         run: |
@@ -108,7 +108,7 @@ jobs:
           php-version: '8.2'
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-dev
+        run: composer install --prefer-dist --no-progress
 
       - name: Run security audit
         run: composer audit || echo "Security audit found issues but continuing..."
