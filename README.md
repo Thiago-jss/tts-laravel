@@ -65,7 +65,7 @@ nano .env
 **Configure no `.env`:**
 
 ```env
-ELEVEN_API_KEY=sk_1234567890abcdef  # ⚠️ SUA CHAVE AQUI
+ELEVEN_API_KEY= sua chave api  # ⚠️ SUA CHAVE AQUI
 ELEVEN_VOICE_ID=21m00Tcm4TlvDq8ikWAM  # Rachel (padrão)
 ```
 
